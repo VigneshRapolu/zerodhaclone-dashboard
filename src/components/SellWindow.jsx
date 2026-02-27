@@ -11,10 +11,10 @@ const SellWindow = ({ uid }) => {
   const token = localStorage.getItem("token");
   const [stockQuantity, setStockQuantity] = useState(1);
   const [stockPrice, setStockPrice] = useState(0.0);
- 
+  const generalContext = useContext(GeneralContext);
 
   const handleSellClick = () => {
-   
+  
    
     
     
@@ -30,7 +30,7 @@ const SellWindow = ({ uid }) => {
         },
       })
     
-   GeneralContext.closeSellWindow();
+   generalContext.closeSellWindow();
         
     
    
@@ -40,7 +40,7 @@ const SellWindow = ({ uid }) => {
   };
 
   const handleCancelClick = () => {
-    GeneralContext.closeSellWindow();
+    generalContext.closeSellWindow();
   };
 
   return (
@@ -75,12 +75,12 @@ const SellWindow = ({ uid }) => {
       <div className="buttons">
         <span>Margin required ₹140.65</span>
         <div>
-          <Link to="#" className="btn btn-blue" onClick={()=>handleSellClick()}>
+          <button  className="btn btn-blue" onClick={handleSellClick}>
             Sell
-          </Link>
-          <Link to="#" className="btn btn-grey" onClick={handleCancelClick}>
+          </button>
+          <button  className="btn btn-grey" onClick={handleCancelClick}>
             Cancel
-          </Link>
+          </button>
         </div>
       </div>
     </div>
