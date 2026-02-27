@@ -18,7 +18,8 @@ const allStore=create((set)=>({
     
 });
 if (!token) {
-            set({ user: false, loading: false });
+            set({ user: false, loading: false,holdings:[] });
+            
             return;
         }
             
@@ -53,7 +54,7 @@ if (!token) {
             const token = localStorage.getItem("token");
             set({loading:true});
             if (!token) {
-            set({ user: false, loading: false });
+            set({ user: false, loading: false,orders:[] });
             return;
         }
             const orderRes=await axios.get(`${BACKEND_URL}/orders`, {
