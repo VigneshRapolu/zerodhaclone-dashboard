@@ -6,7 +6,7 @@ import axios from "axios";
 import GeneralContext from "./GeneralContext";
 
 import "./BuyActionWindow.css";
-const BACKEND_URL = import.meta.env.BACKEND_URL;
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 const BuyActionWindow = ({ uid }) => {
   const [stockQuantity, setStockQuantity] = useState(1);
   const [stockPrice, setStockPrice] = useState(10);
@@ -23,7 +23,11 @@ console.log(uid,"from buy action window");
       qty: stockQuantity,
       price: stockPrice,
       mode: "BUY",
-    },{withCredentials:true});
+    }, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
     
 
     GeneralContext.closeBuyWindow();
