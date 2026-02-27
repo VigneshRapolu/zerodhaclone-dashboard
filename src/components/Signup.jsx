@@ -20,13 +20,11 @@ function Signup(){
             email:email,
             password:pwd,
             username:name
-        },
-{
-    withCredentials: true
-}).then(async (res)=>{
+        }).then(async (res)=>{
           
            
             if(res.data.success){
+                localStorage.setItem("token", res.data.token);
                await makeUser(true);
                 navigate("/");
             }else{
@@ -65,7 +63,7 @@ function Signup(){
            <input type="text" placeholder="enter email" onChange={(e)=>handleEmail(e)} value={email} required/>
 
             <label>Password</label>
-            <input type="text" placeholder="enter password" onChange={(e)=>handlePwd(e)} value={pwd} required/>
+            <input type="password" placeholder="enter password" onChange={(e)=>handlePwd(e)} value={pwd} required/>
             
             <button className="loginBtn">Sign Up</button>
             <p className="signupText">

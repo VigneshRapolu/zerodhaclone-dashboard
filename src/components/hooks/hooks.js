@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import axios from "axios";
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+const token = localStorage.getItem("token");
 const allStore=create((set)=>({
     holdings:[],
     watchList:[],
@@ -9,7 +10,11 @@ const allStore=create((set)=>({
     fetchHoldings:async ()=>{
         try{
             set({loading:true});
-            const res=await axios.get(`${BACKEND_URL}/holdings`,{ withCredentials: true });
+            const res=await axios.get(`${BACKEND_URL}/holdings`, {
+    headers: {
+        Authorization: `Bearer ${token}`
+    }
+});
             
             // console.log("in hooks",res.data);
            
@@ -41,7 +46,11 @@ const allStore=create((set)=>({
             // console.log("fetching orders");
             
             set({loading:true});
-            const orderRes=await axios.get(`${BACKEND_URL}/orders`,{withCredentials:true});
+            const orderRes=await axios.get(`${BACKEND_URL}/orders`, {
+    headers: {
+        Authorization: `Bearer ${token}`
+    }
+});
             console.log(orderRes.data);
             
             set({orders:orderRes.data,loading:false});

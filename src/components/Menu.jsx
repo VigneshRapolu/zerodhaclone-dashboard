@@ -17,6 +17,7 @@ function Menu(){
     function handleLogout(){
         axios.post(`${BACKEND_URL}/logout`,{},{withCredentials:true}).then( async (data)=>{
             await makeUser(false);
+            localStorage.removeItem("token");
             navigate("/signin");
         }).catch((err)=>{
           

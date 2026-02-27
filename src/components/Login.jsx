@@ -18,16 +18,15 @@ function Login(){
       axios.post(`${BACKEND_URL}/login`,{
             email:email,
             password:pwd
-        },
-{
-    withCredentials: true
-}).then(async (res)=>{
+        }).then(async (res)=>{
         //    console.log(res);
            
             if(res.data.success){
                 
                 
                 await makeUser(true);
+
+                localStorage.setItem("token", res.data.token);
                 console.log('success login');
                 navigate("/");
             }else{
@@ -62,7 +61,7 @@ function Login(){
            <input type="text" placeholder="enter email" onChange={(e)=>handleEmail(e)} value={email} required/>
 
             <label>Password</label>
-            <input type="text" placeholder="enter password" onChange={(e)=>handlePwd(e)} value={pwd} required/>
+            <input type="password" placeholder="enter password" onChange={(e)=>handlePwd(e)} value={pwd} required/>
 
             <button className="loginBtn">Login</button>
             <p className="signupText">
