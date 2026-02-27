@@ -1,6 +1,6 @@
 import TopBar from "./TopBar"
 import Dashboard from './Dashboard'
-
+import { useEffect } from "react";
 function Home(){
     useEffect(() => {
     const token = localStorage.getItem("token");
