@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 import axios from "axios";
-
+import { useContext } from "react";
 import GeneralContext from "./GeneralContext";
 
 import "./BuyActionWindow.css";
