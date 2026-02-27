@@ -2,18 +2,19 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 import axios from "axios";
-
+import { useContext } from "react";
 import GeneralContext from "./GeneralContext";
 
 import "./BuyActionWindow.css";
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 const BuyActionWindow = ({ uid }) => {
+  const generalContext = useContext(GeneralContext);
   const token = localStorage.getItem("token");
   const [stockQuantity, setStockQuantity] = useState(1);
   const [stockPrice, setStockPrice] = useState(10);
 console.log(uid,"from buy action window");
 
-  const handleBuyClick = (e) => {
+  const handleBuyClick = () => {
    
     // console.log("hello buying");
     
@@ -31,11 +32,11 @@ console.log(uid,"from buy action window");
       });
     
 
-    GeneralContext.closeBuyWindow();
+    generalContext.closeBuyWindow();
   };
 
   const handleCancelClick = () => {
-    GeneralContext.closeBuyWindow();
+    generalContext.closeBuyWindow();
   };
 
   return (
@@ -71,12 +72,12 @@ console.log(uid,"from buy action window");
       <div className="buttons">
         <span>Margin required ₹140.65</span>
         <div>
-          <Link to="#" className="btn btn-blue" onClick={(e)=>handleBuyClick(e)}>
+          <button  className="btn btn-blue" onClick={handleBuyClick}>
             Buy
-          </Link>
-          <Link to="#" className="btn btn-grey" onClick={handleCancelClick}>
+          </button>
+          <button  className="btn btn-grey" onClick={handleCancelClick}>
             Cancel
-          </Link>
+          </button>
         </div>
       </div>
     </div>
