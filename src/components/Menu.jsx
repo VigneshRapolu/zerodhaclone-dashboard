@@ -16,7 +16,7 @@ function Menu(){
     
     function handleLogout(){
         axios.post(`${BACKEND_URL}/logout`,{}).then( async (data)=>{
-            await makeUser(false);
+            makeUser(false);
             localStorage.removeItem("token");
             navigate("/signin");
         }).catch((err)=>{
@@ -32,9 +32,7 @@ function Menu(){
         
         setIsProfileDropdown(!isProfileDropdown);
     }
-    if(isProfileDropdown){
-
-    }
+  
     return (
         <div className="menu-container">
             <img src="logo.png" alt="" style={{width:"30px",height:"30px"}} />
@@ -65,7 +63,7 @@ function Menu(){
         <div className="profileView">
             {!user?<span>
                 <Link to="/signin"><button className="profilebtn mb-1">Sign in</button></Link><Link to="/signup"><button className="profilebtn">Signup</button></Link>
-            </span>:<button onClick={handleLogout} className="profilebtn">Signout</button>}
+            </span>:<button onClick={()=>handleLogout()} className="profilebtn">Signout</button>}
           
         </div>
       )}
